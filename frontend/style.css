@@ -1,52 +1,80 @@
 body {
   font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(to right, #1f1c2c, #928dab);
-  color: white;
+  background: linear-gradient(135deg, #2c3e50, #3498db);
   margin: 0;
   padding: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
+  color: white;
   animation: fadeIn 1s ease;
 }
 
-main {
-  text-align: center;
-  background: rgba(0,0,0,0.4);
+.container {
+  background: rgba(0, 0, 0, 0.4);
   padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+  border-radius: 15px;
+  text-align: center;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
 }
 
 input {
-  padding: 10px;
-  width: 300px;
-  border-radius: 6px;
+  width: 100%;
+  padding: 12px;
+  margin: 15px 0;
   border: none;
-  margin: 10px 0;
+  border-radius: 8px;
+  font-size: 16px;
 }
 
 button {
-  padding: 10px 20px;
-  background-color: #00c9ff;
+  padding: 12px 25px;
   border: none;
-  border-radius: 6px;
-  cursor: pointer;
+  border-radius: 8px;
+  background: #00c9ff;
   color: black;
-  transition: background 0.3s;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 button:hover {
-  background-color: #92fe9d;
+  background: #92fe9d;
+  transform: scale(1.05);
+}
+
+.subtitle {
+  opacity: 0.8;
+  font-size: 14px;
 }
 
 #message {
   margin-top: 10px;
   font-style: italic;
+  color: #ffeb3b;
+}
+
+#result {
+  margin-top: 15px;
+}
+
+.download-link {
+  color: #00ffcc;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+footer {
+  margin-top: 25px;
+  font-size: 12px;
+  opacity: 0.6;
 }
 
 @keyframes fadeIn {
-  from {opacity: 0;}
-  to {opacity: 1;}
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
