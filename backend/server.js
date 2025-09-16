@@ -1,28 +1,36 @@
 const express = require('express');
 const axios = require('axios');
 const cors = require('cors');
-const path = require('path');
 const rateLimit = require('express-rate-limit');
 const bodyParser = require('body-parser');
-
+const path = require('path');
 const app = express();
+
+// ===== Middleware =====
 app.use(cors());
 app.use(bodyParser.json());
 
-// Rate limit untuk mencegah spam
+// Rate limiter (opsional tapi disarankan)
 const limiter = rateLimit({
   windowMs: 60 * 1000,
-  max: 10
+  max: 10, // Maksimum 10 request per menit per IP
 });
 app.use('/api/', limiter);
 
-// Serve file frontend
-app.use(express.static(path.join(__dirname, '../frontend')));
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/index.html'));
+// ===== Static Files (HTML, CSS, JS, Favicon) =====
+app.use(express.static(__dirname));
+
+// Favicon handling if not present
+app.get('/favicon.ico', (req, res) => {
+  res.status(204).end(); // No content, silent fail
 });
 
-// Endpoint download TikTok
+// ===== Serve index.html =====
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+// ===== API Endpoint TikTok Downloader =====
 app.post('/api/download', async (req, res) => {
   const { videoUrl } = req.body;
 
@@ -31,14 +39,21 @@ app.post('/api/download', async (req, res) => {
   }
 
   try {
-    // Ganti URL ini dengan endpoint API TikTok downloader yang kamu pakai
-    const response = await axios.get(`https://api.snaptik.app/your-api-endpoint?url=${encodeURIComponent(videoUrl)}`);
-    res.json({ downloadUrl: response.data.download_url });
+    // Ganti dengan API downloader beneran yang kamu pakai (contoh: snaptik, musicallydown, dll)
+    const apiUrl = `https://api.example.com/tiktok?url=${encodeURIComponent(videoUrl)}`;
+
+    const response = await axios.get(apiUrl);
+
+    // Misalnya responnya punya: { download_url: "..." }
+    res.json({ downloadUrl: response.data.download_url || null });
   } catch (err) {
     console.error(err.message);
     res.status(500).json({ error: 'Gagal menghubungi API pihak ketiga.' });
   }
 });
 
+// ===== Start Server =====
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`✅ Server running on http://localhost:${PORT}`));
+app.listen(PORT, () => {
+  console.log(`✅ Server running on http://localhost:${PORT}`);
+});
