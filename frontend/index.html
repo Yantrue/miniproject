@@ -1,23 +1,27 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TikTok Downloader</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TikTok Video Downloader</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <main>
+  <main class="container">
     <h1>TikTok Video Downloader</h1>
-    <p>Masukkan URL video TikTok untuk mengunduh tanpa watermark</p>
-    <input type="text" id="videoUrl" placeholder="https://www.tiktok.com/..." />
-    <button onclick="downloadVideo()">Download</button>
+    <p class="subtitle">Unduh video TikTok tanpa watermark secara gratis dan cepat.</p>
+
+    <input type="text" id="videoUrl" placeholder="Masukkan URL video TikTok..." />
+    <button id="downloadBtn">Download</button>
+
     <div id="message"></div>
     <div id="result"></div>
+
     <footer>
-      <a href="../public/privacy-policy.html">Privacy Policy</a>
+      <p>© 2025 Downloader. <a href="/privacy-policy.html">Privacy Policy</a></p>
     </footer>
   </main>
+
   <script src="script.js"></script>
 </body>
 </html>
